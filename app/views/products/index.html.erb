@@ -1,36 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Teste</title>
-</head>
-<body>
-    <center>
-        <h1>All Products</h1>
-    </center>
-    <div class="container   ">
-        <table class="table table-bordered table-hover">
-            <thead>
+<center>
+    <h1>All Products</h1>
+</center>
+<div class="container   ">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Descrição</td>
+                <td>Preço</td>
+                <td>Quantidade</td>
+                <td colspan="1">
+            </tr>
+        </thead>
+        <tbody>
+            <% @products.each do |produto| %>
                 <tr>
-                    <td>Nome</td>
-                    <td>Descrição</td>
-                    <td>Preço</td>
-                    <td>Quantidade</td>
+                    <td><%= produto.name %></td>
+                    <td><%= produto.description %></td>
+                    <td><%= produto.price %></td>
+                    <td><%= produto.quantity%></td>
+                    <td><%= button_to("Remover", produto, :method => "delete", :class => "btb btn-danger", :data => {confirm: "are u sure to remove #{produto.name}?",})%></td>
                 </tr>
-            </thead>
-            <tbody>
-                <% @products.each do |produto| %>
-                    <tr>
-                        <td><%= produto.name %></td>
-                        <td><%= produto.description %></td>
-                        <td><%= produto.price %></td>
-                        <td> <%= produto.quantity %></td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
-    </div>
-</body>
-</html>
+            <% end %>
+        </tbody>
+    </table>
+</div>
