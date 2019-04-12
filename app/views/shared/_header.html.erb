@@ -32,7 +32,7 @@
       </ul>
       <%= form_tag products_search_path,:class => "navbar-form navbar-left", :method => "GET" do %>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" placeholder="" value="<%=@name%>" name="name">
         </div>
         <%= button_to "Pesquisar" ,:class => "btn btn-default"%>
       <% end %>

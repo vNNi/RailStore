@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
     def index
         @products = Produto.order :name
     end
+
     def create 
         products = params.require(:product).permit(:name, :description, :price, :quantity)
         if(products)
@@ -9,8 +10,10 @@ class ProductsController < ApplicationController
         elsif
             redirect_to('/products/new')
         end
+        flash[:success] = "Produto criado com sucesso !";
         redirect_to('/');
     end
+
     def destroy
         id = params[:id].to_i()
         if(id)
@@ -19,5 +22,10 @@ class ProductsController < ApplicationController
         elsif
             redirect_to root_path
         end
+    end
+
+    def search
+         @name = params[:name]
+         @products = Produto.where("name like ?", "%#{@name}%")
     end
 end
